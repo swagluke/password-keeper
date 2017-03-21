@@ -6,5 +6,6 @@ export const environment = {
     databaseURL: "https://zhangl-password-keeper.firebaseio.com",
     storageBucket: "zhangl-password-keeper.appspot.com",
     messagingSenderId: "272636241167"
-  }
+  },
+  rosefireRegistryToken: "685908dc-1b75-4f83-869d-cde6af91c8c4"
 };
