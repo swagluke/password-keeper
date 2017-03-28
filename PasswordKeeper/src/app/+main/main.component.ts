@@ -21,10 +21,11 @@ export class MainComponent implements OnInit, OnDestroy {
   passwordStream: FirebaseListObservable<Password[]>;
   private authSubscription: Subscription;
   firebasePath: string;
+
   constructor(
     private af: AngularFire,
-     private router: Router,
-     private dialog: MdDialog) {
+    private router: Router,
+    private dialog: MdDialog) {
     this.authSubscription = af.auth.subscribe((auth: FirebaseAuthState) => {
       if (auth) {
         console.log("You are signed in. All is good.");
@@ -38,6 +39,18 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+  }
+
+  get numberColumns(): number {
+    if (window.innerWidth < 500) {
+      return 1;
+    } else if (window.innerWidth < 900) {
+      return 2;
+    } else if (window.innerWidth < 1300) {
+      return 3;
+    } else {
+      return 4;
+    }
   }
 
   showAddPasswordDialog() {
