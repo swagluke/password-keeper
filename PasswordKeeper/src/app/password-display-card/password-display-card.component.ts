@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, trigger, state, style, transition, animate } from '@angular/core';
 import { Password } from './../password.model';
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'password-display-card',
   templateUrl: './password-display-card.component.html',
@@ -10,7 +12,6 @@ import { Password } from './../password.model';
         height: 0
       })),
       state('expanded', style({
-
       })),
       transition('* => *', animate('0.3s'))
     ])
@@ -19,6 +20,7 @@ import { Password } from './../password.model';
 export class PasswordDisplayCardComponent implements OnInit {
 
   @Input() password: Password;
+  @Input() firebasePath: string;
   isExpanded = false;
 
   get showPasswordState(): string {
@@ -27,6 +29,14 @@ export class PasswordDisplayCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
+  edit(): void {
+    console.log("Edit", this.password);
+  }
+
+  remove(): void {
+    firebase.database().ref().child(this.firebasePath).child(this.password.$key).remove();
+  }
 }
